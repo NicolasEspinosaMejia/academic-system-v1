@@ -19,15 +19,77 @@ paths:
   /student/manage_student:
     post:
       tags:
-        - Manage Student
+        - Academic System
       summary: End point for student setup
       description: Endpoint to configure student
-      operationId: manage_student
       consumes:
         - application/json
       produces:
         - application/json
       x-swagger-router-controller: project.views.student
+      operationId: manage_student
+      responses:
+        '200':
+          description: 'The request has succeeded'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/studentRequest'
+  /student/delete_student:
+    post:
+      tags:
+        - Academic System
+      summary: End point for student setup
+      description: Endpoint to configure student
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: manage_student_delete
+      responses:
+        '200':
+          description: 'The request has succeeded'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/studentRequest'
+  /student/get_student:
+    get:
+      tags:
+        - Academic System
+      summary: End point for get students
+      description: Endpoint for get students
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: get_student
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+  /course/manage_course:
+    post:
+      tags:
+        - Academic System
+      summary: End point for course setup
+      description: Endpoint to configure course
+      operationId: manage_course
+      consumes:
+        - application/json
+      produces:
+        - application/json
       responses:
         '200':
           description: 'OK'
@@ -38,294 +100,121 @@ paths:
           name: data
           required: true
           schema:
-              $ref: '#/definitions/studentRequest'
-  /control-action/execute:
+              $ref: '#/definitions/courseRequest'
+      x-swagger-router-controller: project.views.course
+  /course/delete_course:
     post:
       tags:
-        - Control Action
-      summary: The requestor asks the receiver to start executing control actions for the devices
-      description: >-
-        Ajustar
+        - Academic System
+      summary: End point for course setup
+      description: Endpoint to configure course
+      operationId: manage_course_delete
       consumes:
         - application/json
       produces:
         - application/json
-      x-swagger-router-controller: project.views.control_action
-      operationId: execute
       responses:
         '200':
-          description: 'The request has succeeded'
+          description: 'OK'
           schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: 'The server understood the request but refuses to
-                        authorize it'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: 'Internal server error'
-          schema:
-            $ref: '#/definitions/responseBody'
-  /event/get-on-demand:
-    post:
-      tags:
-        - Event
-      summary: The requester asks the receiver to start monitoring the events 
-               of a set of meters
-      description: >-
-         Creates the request to return all end device events of specified end
-         device types for meters specified by their meter ID.
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.event
-      operationId: get_on_demand
-      responses:
-        '200':
-          description: 'The request has succeeded'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: 'The server understood the request but refuses to authorize it'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: 'Internal server error'
-          schema:
-            $ref: '#/definitions/responseBody'
-  /event/subscribe:
-    post:
-      tags:
-        - Event
-      summary: The requester asks the receiver to start monitoring the events 
-               of a set of meters
-      description: >-
-         Ajustar
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.event
-      operationId: subscribe
-      responses:
-        '200':
-          description: 'The request has succeeded'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: 'The server understood the request but refuses to authorize it'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: 'Internal server error'
-          schema:
-            $ref: '#/definitions/responseBody'
-  /external-system/check-state:
-    post:
-      tags:
-        - External system
-      summary: Responds with the current state of a requested system component
-      description: >-
-        This method aims to verify the status of all or each one of the components that are part
-        of the API
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.external_system
-      operationId: check_state
+            $ref: '#/definitions/responseConfigValidation'
       parameters:
-        - name: component
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/courseRequest'
+      x-swagger-router-controller: project.views.course
+  /course/get_course:
+    get:
+      tags:
+        - Academic System
+      summary: End point for get variables
+      description: Endpoint for get variables
+      operationId: get_course
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - name: filter
           in: query
           required: false
           type: string
-      responses:
-        '200':
-          description: The request has succeeded
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: The server understood the request but refuses to authorize it
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/responseBody'
-  /external-system/get-capabilities:
+      x-swagger-router-controller: project.views.course
+  /address/manage_address:
     post:
       tags:
-        - External system
-      summary: Generates and send the command to get the methods supported by an external system
-      description: >-
-        This method sends a command to obtain the capabilities of an external system,
-        that is, the requested command must consult the external system for
-        the methods supported and configured in this
+        - Academic System
+      summary: End point for address setup
+      description: Endpoint to configure address
+      operationId: manage_address
       consumes:
         - application/json
       produces:
         - application/json
-      x-swagger-router-controller: project.views.external_system
-      operationId: get_capabilities
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
       parameters:
-        - name: component
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/addressRequest'
+      x-swagger-router-controller: project.views.address
+  /address/delete_address:
+    post:
+      tags:
+        - Academic System
+      summary: End point for address setup
+      description: Endpoint to configure address
+      operationId: manage_address_delete
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/addressRequest'
+      x-swagger-router-controller: project.views.address
+  /address/get_address:
+    get:
+      tags:
+        - Academic System
+      summary: End point for get variables
+      description: Endpoint for get variables
+      operationId: get_address
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - name: filter
           in: query
           required: false
           type: string
-      responses:
-        '200':
-          description: The request has succeeded
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: The server understood the request but refuses to authorize it
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/responseBody'
-  /external-system/get-identifier:
-    post:
-      tags:
-        - External system
-      summary: Generates and sends the command to query the identifier of an external system
-      description: >-
-          This method sends a command to query the identifier of an external system
-          required to perform various operations
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.external_system
-      operationId: get_identifier
-      parameters:
-        - name: component
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: The request has succeeded
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: The server understood the request but refuses to authorize it
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: Internal server error
-          schema:
-            $ref: '#/definitions/responseBody'
-  /metering-system/discover:
-    post:
-      tags:
-        - Metering System
-      summary: Request the consultation for the configuration of the metering systems
-      description: >-
-        This method requests the execution of the necessary commands to consult all
-        the data necessary to configure the measurement systems
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.metering_system
-      operationId: discover
-      responses:
-        '200':
-          description: 'The request has succeeded'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: 'The server understood the request but refuses to authorize it'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: 'Internal server error'
-          schema:
-            $ref: '#/definitions/responseBody'
-  /reading/get-on-demand:
-    post:
-      tags:
-        - Reading
-      summary: The requester asks the receiver for demand readings from
-               a group of meters
-      description: >-
-        Ajustar
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.reading
-      operationId: get_on_demand
-      responses:
-        '200':
-          description: 'The request has succeeded'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: 'The server understood the request but refuses to authorize it'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: 'Internal server error'
-          schema:
-            $ref: '#/definitions/responseBody'
-  /schedule/create-reading-schedule:
-    post:
-      tags:
-        - Schedule
-        - Reading
-      summary: The requestor asks the receiver to program the reading of
-               measurements from a group of meters
-      description: >-
-        Ajustar
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.schedule
-      operationId: create_reading_schedule
-      responses:
-        '200':
-          description: 'The request has succeeded'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: 'The server understood the request but refuses to authorize it'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: 'Internal server error'
-          schema:
-            $ref: '#/definitions/responseBody'
-  /schedule/enable-reading-schedule:
-    post:
-      tags:
-        - Schedule
-      summary: Ajustar
-      description: >-
-        Ajustar
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      x-swagger-router-controller: project.views.schedule
-      operationId: enable_reading_schedule
-      responses:
-        '200':
-          description: 'The request has succeeded'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '403':
-          description: 'The server understood the request but refuses to authorize it'
-          schema:
-            $ref: '#/definitions/responseBody'
-        '500':
-          description: 'Internal server error'
-          schema:
-            $ref: '#/definitions/responseBody'
+      x-swagger-router-controller: project.views.address
 definitions:
   studentRequest:
     type: object
@@ -340,24 +229,30 @@ definitions:
           type: string
       action:
           type: string
+      identifier:
+          type: integer
   courseRequest:
     type: object
     properties:
-      name_course:
+      nameCourse:
           type: string
-      course_start_date:
+      courseStartDate:
           type: string
-      course_end_date:
+      courseEndDate:
           type: string
   addressRequest:
     type: object
     properties:
-      name_course:
+      identifier:
+          type: integer
+      permanentAddress:
           type: string
-      course_start_date:
-          type: string
-      course_end_date:
-          type: string
+      typeAddress:
+          type: integer
+      identifierStudent:
+          type: integer
+      student:
+          type: object
   responseConfigValidation:
     type: object
     properties:

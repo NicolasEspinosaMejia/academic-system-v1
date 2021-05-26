@@ -2,6 +2,9 @@ from project.composers.address_compose import AddressCompose
 from project.services.address_service import AddressService
 from project.configuration_manager import ConfigurationManager
 from project.resources.decorators.view_aspect import ViewAspect
+from project.infrastructure.repositories.common_repository import CommonRepository
+from project.infrastructure.repositories.repository_by_entities_definitions\
+import RepositoryByEntitiesDefinitions
 
 
 @ViewAspect
@@ -12,9 +15,16 @@ def manage_address(data):
     return result
 
 @ViewAspect
-def get_address(data):
+def manage_address_delete(data):
     service = get_service()
-    result = service.get_address(data)
+    result = service.manage_address_delete(data)
+
+    return result
+
+@ViewAspect
+def get_address():
+    service = get_service()
+    result = service.get_address()
 
     return result
 
@@ -26,13 +36,13 @@ def get_service():
         object:This method returns an instance of the parent service that
                is being used
     """
+    bridge_command_repository = CommonRepository()
     microservice = ConfigurationManager.microservice
-    database_cache_repository = microservice.database_cache_repository
     sender_queue_service_client = microservice.sender_queue_service_client
     compose = AddressCompose(
-        database_cache_repository=database_cache_repository,
+        database_cache_repository=bridge_command_repository,
         sender_queue_service_client=sender_queue_service_client)
-    service = AddressService(
-        compose=compose)
+    service = AddressService(compose=compose,
+                             repository=RepositoryByEntitiesDefinitions)
 
     return service

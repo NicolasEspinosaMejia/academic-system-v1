@@ -203,6 +203,42 @@ class GeneralsUtils:
 
         return True
 
+
+    @staticmethod
+    def validate_attribute(attribute_name,
+                           structure,
+                           attribute_types_allowed=None):
+        result = False
+
+        if not GeneralsUtils.validate_string(attribute_name) or\
+           not isinstance(structure, (dict, tuple, list)) or\
+           attribute_name not in structure:
+            return False
+
+        if attribute_types_allowed is None:
+            result = True
+
+        elif isinstance(attribute_types_allowed, type) or\
+                (
+                    isinstance(attribute_types_allowed, tuple) and
+                    all(isinstance(type_attribute_allowed, type)
+                        for type_attribute_allowed in attribute_types_allowed)
+                ):
+
+            if isinstance(structure, dict):
+                attribute = structure[attribute_name]
+            else:
+                attribute =\
+                    next(item for item in structure if attribute_name == item)
+
+            if isinstance(attribute, attribute_types_allowed):
+                result = True
+
+        else:
+            return False
+
+        return result
+
     @staticmethod
     def try_parse_date_time(value, format="%Y-%m-%dT%H:%M:%SZ"):
         result = None

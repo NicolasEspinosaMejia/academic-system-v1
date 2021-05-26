@@ -7,10 +7,20 @@ class Constants():
     CONFIG_DATABASE_CACHE_KEYS_KEY = "DATABASE_CACHE_KEYS"
     CONFIG_DEBUG_KEY = "DEBUG"
 
+    DATABASE_SYSTEMS = ('postgres', 'redis', 'redshift', 'sqlite', "postgresql")
+    DATABASE_DRIVERS = ('pg8000', 'psycopg2')
+    DATABASE_WITH_AUDIT = ('postgres', 'postgresql')
+
     GLOBAL_DATA_HES_KEY = "hes"
     GLOBAL_DATA_OWNER_KEY = "owner"
     GLOBAL_DATA_USER_ID_KEY = "user_id"
     GLOBAL_DATA_TRANSACTION_ID_KEY = "transaction_id"
+    GLOBAL_SESSION_TRANSACTION_ID_KEY = "globalSession.transaction_id"
+    GLOBAL_SESSION_USER_ID_KEY = "globalSession.user_id"
+    GLOBAL_SESSION_OWNER_ID_KEY = "globalSession.owner_id"
+    GLOBAL_SESSION_SOURCE_ID_KEY = "globalSession.source_id"
+    GLOBAL_SESSION_SOURCE_IP_KEY = "globalSession.source_Ip"
+    GLOBAL_DATA_IP_KEY = "source_ip"
 
     BODY_NODE_OWNER_KEY = "owner"
     BODY_NODE_OWNER_OWNER_KEY = "owner"
@@ -189,3 +199,5 @@ class Constants():
         "ERROR": SYSTEM_LOG_CATEGORY_ERROR,
         "INFORMATION": SYSTEM_LOG_CATEGORY_INFORMATION,
         "WARNING": SYSTEM_LOG_CATEGORY_WARNING}
+
+    NAME_SERVICE = "AcademicSystem"
