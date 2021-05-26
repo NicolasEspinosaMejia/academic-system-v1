@@ -8,4 +8,5 @@ openapi-spec-validator==0.2.9
 py-ms[all]==2.4.0
 python-dateutil==2.8.1
 SQLAlchemy==1.4.15
+Flask-JWT==0.3.2
 pg8000==1.19.5
