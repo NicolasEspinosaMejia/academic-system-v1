@@ -81,5 +81,47 @@
             "type": "object"
          }
       }
+   },
+   "studentCourse": {
+      "tableName": "as_student_by_course",
+      "type": "object",
+      "primaryKey": [
+         "identifierStudentByCourse"
+      ],
+      "properties": {
+         "identifierStudentByCourse": {
+            "dbName": "identifier_student_by_course",
+            "type": "integer"
+         },
+         "identifierStudent": {
+            "dbName": "identifier_student",
+            "type": "integer"
+         },
+         "identifierCourse": {
+            "dbName": "identifier_course",
+            "type": "integer"
+         }
+      }
+   },
+   "studentAddress": {
+      "tableName": "as_student_by_address",
+      "type": "object",
+      "primaryKey": [
+         "identifierStudentByAddress"
+      ],
+      "properties": {
+         "identifierStudentByAddress": {
+            "dbName": "identifier_student_by_address",
+            "type": "integer"
+         },
+         "identifierStudent": {
+            "dbName": "identifier_student",
+            "type": "integer"
+         },
+         "identifierAddress": {
+            "dbName": "identifier_address",
+            "type": "integer"
+         }
+      }
    }
 }

@@ -1,9 +1,11 @@
 import json
+import jwt
 
 from datetime import datetime
 
 from flask import g, request
 from flask_script import Manager
+from flask_jwt import JWT, jwt_required, current_identity
 
 from project.app import create_app
 from project.constants import Constants
@@ -13,7 +15,6 @@ from project.resources.utils.generals_utils import GeneralsUtils
 
 
 app = create_app()
-
 
 @app.before_request
 def before_request_function():

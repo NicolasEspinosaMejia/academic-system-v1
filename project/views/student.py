@@ -22,6 +22,34 @@ def manage_student_delete(data):
     return result
 
 @ViewAspect
+def associate_student_course(data):
+    service = get_service()
+    result = service.associate_student_course(data)
+
+    return result
+
+@ViewAspect
+def associate_student_address(data):
+    service = get_service()
+    result = service.associate_student_address(data)
+
+    return result
+
+@ViewAspect
+def disassociate_student_course(data):
+    service = get_service()
+    result = service.disassociate_student_course(data)
+
+    return result
+
+@ViewAspect
+def disassociate_student_address(data):
+    service = get_service()
+    result = service.disassociate_student_address(data)
+
+    return result
+
+@ViewAspect
 def get_student():
     service = get_service()
     result = service.get_student()

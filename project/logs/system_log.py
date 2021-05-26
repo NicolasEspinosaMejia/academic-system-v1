@@ -1,4 +1,4 @@
-
+from io import open
 
 from project.resources.utils.generals_utils import GeneralsUtils
 from project.constants import Constants
@@ -38,6 +38,10 @@ class SystemLog:
                 process,
                 class_name,
                 module_name)
+
+            logs = open("logs.txt", "w")
+            logs.write(message)
+            logs.close()
 
             SystemLog.reports.append(system_log_model)
 

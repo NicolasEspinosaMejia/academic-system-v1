@@ -62,6 +62,75 @@ paths:
           required: true
           schema:
               $ref: '#/definitions/studentRequest'
+  /student/associate_student_course:
+    post:
+      tags:
+        - Academic System
+      summary: End point for student setup
+      description: Endpoint to configure student
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: associate_student_course
+      responses:
+        '200':
+          description: 'The request has succeeded'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/studentRequest'
+  /student/associate_student_address:
+    post:
+      tags:
+        - Academic System
+      summary: End point for student setup
+      description: Endpoint to configure student
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: associate_student_address
+      responses:
+        '200':
+          description: 'The request has succeeded'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/studentRequest'
+  /student/disassociate_student_course:
+    post:
+      tags:
+        - Academic System
+      summary: End point for student setup
+      description: Endpoint to configure student
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: disassociate_student_course
+      responses:
+        '200':
+          description: 'The request has succeeded'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/studentRequest'
   /student/get_student:
     get:
       tags:
@@ -230,6 +299,24 @@ definitions:
       action:
           type: string
       identifier:
+          type: integer
+  studentAssociateCourseRequest:
+    type: object
+    properties:
+      identifierStudentByCourse:
+          type: integer
+      identifierStudent:
+          type: integer
+      identifierCourse:
+          type: integer
+  studentAssociateAddressRequest:
+    type: object
+    properties:
+      identifierStudentByAddress:
+          type: integer
+      identifierStudent:
+          type: integer
+      identifierAddress:
           type: integer
   courseRequest:
     type: object
