@@ -1,0 +1,9 @@
+Flask==1.1.2
+Flask-Script==2.0.6
+flask_cors==3.0.8
+cryptography==3.1.1
+boto3==1.14.11
+redis==3.4.1
+openapi-spec-validator==0.2.9
+py-ms[all]==2.4.0
+python-dateutil==2.8.1
