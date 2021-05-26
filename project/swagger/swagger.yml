@@ -1,0 +1,328 @@
+---
+swagger: '2.0'
+info:
+  description: >-
+    This is a Microservice developed under Python, it uses the PyMS
+    Microservice pattern and its main functionality is to support of academia.
+  version: 1.0.0
+  title: Academic System Microservice
+tags:
+  - name: Academic System
+    description: >-
+      This Microservice has functionality to process and configure all the requests
+      made to the academic system.
+  - name: Manage Student
+    description: >-
+      The functionality of this endpoint is to manage the students entering or
+      leaving the institution.
+paths:
+  /student/manage_student:
+    post:
+      tags:
+        - Academic System
+      summary: End point for student setup
+      description: Endpoint to configure student
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: manage_student
+      responses:
+        '200':
+          description: 'The request has succeeded'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/studentRequest'
+  /student/delete_student:
+    post:
+      tags:
+        - Academic System
+      summary: End point for student setup
+      description: Endpoint to configure student
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: manage_student_delete
+      responses:
+        '200':
+          description: 'The request has succeeded'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/studentRequest'
+  /student/get_student:
+    get:
+      tags:
+        - Academic System
+      summary: End point for get students
+      description: Endpoint for get students
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      x-swagger-router-controller: project.views.student
+      operationId: get_student
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+  /course/manage_course:
+    post:
+      tags:
+        - Academic System
+      summary: End point for course setup
+      description: Endpoint to configure course
+      operationId: manage_course
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/courseRequest'
+      x-swagger-router-controller: project.views.course
+  /course/delete_course:
+    post:
+      tags:
+        - Academic System
+      summary: End point for course setup
+      description: Endpoint to configure course
+      operationId: manage_course_delete
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/courseRequest'
+      x-swagger-router-controller: project.views.course
+  /course/get_course:
+    get:
+      tags:
+        - Academic System
+      summary: End point for get variables
+      description: Endpoint for get variables
+      operationId: get_course
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          type: string
+      x-swagger-router-controller: project.views.course
+  /address/manage_address:
+    post:
+      tags:
+        - Academic System
+      summary: End point for address setup
+      description: Endpoint to configure address
+      operationId: manage_address
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/addressRequest'
+      x-swagger-router-controller: project.views.address
+  /address/delete_address:
+    post:
+      tags:
+        - Academic System
+      summary: End point for address setup
+      description: Endpoint to configure address
+      operationId: manage_address_delete
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - in: body
+          name: data
+          required: true
+          schema:
+              $ref: '#/definitions/addressRequest'
+      x-swagger-router-controller: project.views.address
+  /address/get_address:
+    get:
+      tags:
+        - Academic System
+      summary: End point for get variables
+      description: Endpoint for get variables
+      operationId: get_address
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'OK'
+          schema:
+            $ref: '#/definitions/responseConfigValidation'
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          type: string
+      x-swagger-router-controller: project.views.address
+definitions:
+  studentRequest:
+    type: object
+    properties:
+      studentName:
+          type: string
+      studentLastName:
+          type: string
+      birthDate:
+          type: string
+      gender:
+          type: string
+      action:
+          type: string
+      identifier:
+          type: integer
+  courseRequest:
+    type: object
+    properties:
+      nameCourse:
+          type: string
+      courseStartDate:
+          type: string
+      courseEndDate:
+          type: string
+  addressRequest:
+    type: object
+    properties:
+      identifier:
+          type: integer
+      permanentAddress:
+          type: string
+      typeAddress:
+          type: integer
+      identifierStudent:
+          type: integer
+      student:
+          type: object
+  responseConfigValidation:
+    type: object
+    properties:
+      apiVersion:
+        type: string
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/logTopology'
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/responseDetail'
+      statusCode:
+        type: integer
+      method:
+        type: string
+  responseDetail:
+    type: object
+    properties:
+      code:
+        type: string
+      values:
+        type: array
+        items:
+          type: string
+      type:
+        type: string
+  logTopology:
+    type: object
+    properties:
+      guidFile:
+        type: string
+      process:
+        type: string
+      action:
+        type: boolean
+      entityName1:
+        type: string
+      entityId1:
+        type: string
+      entityName2:
+        type: string
+      entityId2:
+        type: string
+  responseBody:
+    type: object
+    properties:
+      method:
+        type: string
+      apiVersion:
+        type: string
+      data:
+        type: array
+        items:
+          type: object
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/responseBodyDetail'
+      statusCode:
+        type: integer
+  responseBodyDetail:
+    type: object
+    properties:
+      message:
+        type: string
+      values:
+        type: array
+        items:
+          type: string
+      level:
+        type: string

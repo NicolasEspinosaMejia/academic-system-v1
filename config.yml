@@ -1,0 +1,25 @@
+pyms:
+    services:
+      swagger:
+          path: "swagger"
+          file: "swagger.yml"
+          url: "/swagger/"
+          project_dir: "project"
+    config:
+      APP_NAME: "Academic System Microservice"
+      APP_VERSION: "1.0.0"
+      APPLICATION_ROOT : "/academic-system"
+      AWS_SQS_ACCESS_KEY_ID: "AKIAYP2Z4Y6TMNKJXVFN"
+      AWS_SQS_REGION_NAME: "us-east-1"
+      AWS_SQS_SECRET_ACCESS_KEY: "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"
+      CONNECTION_STRINGS:
+        POSTGRESQL_DB_SET_AS: "postgresql,pg8000,postgres:root@localhost:5432/DEV_ACADEMIC_SYSTEM"
+        REDIS_EC_CROSS: "host=localhost,port=16379"
+      DEBUG: true
+      LANGUAGE_MULTI_SPEAK_DEFAULT_VERSION: "5.0.0"
+      QUEUE_COMMAND_NAME: "sqs-command"
+      QUEUE_INTEROPERABILITY_NAME: "sqs-interoperability"
+      QUEUE_PARAMETER_NAME: "sqs-parameter"
+      QUEUE_LOG_NAME: "sqs-logs"
+      TESTING: true
+      ENTITIES_DEFINITIONS_PATH: "static/entities_definitions.json"

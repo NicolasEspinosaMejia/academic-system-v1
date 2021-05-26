@@ -1,0 +1,85 @@
+{
+   "student": {
+      "tableName": "as_student",
+      "type": "object",
+      "primaryKey": [
+         "identifierStudent"
+      ],
+      "properties": {
+         "identifierStudent": {
+            "dbName": "identifier_student",
+            "type": "integer"
+         },
+         "studentName": {
+            "dbName": "student_name",
+            "type": "string"
+         },
+         "studentLastName": {
+            "dbName": "student_last_name",
+            "type": "string"
+         },
+         "birthDate": {
+            "dbName": "birth_date",
+            "type": "dateTime"
+         },
+         "gender": {
+            "dbName": "gender",
+            "type": "integer"
+         }
+      }
+   },
+   "course": {
+      "tableName": "as_course",
+      "type": "object",
+      "primaryKey": [
+         "identifierCourse"
+      ],
+      "properties": {
+         "identifierCourse": {
+            "dbName": "identifier_course",
+            "type": "integer"
+         },
+         "nameCourse": {
+            "dbName": "name_course",
+            "type": "string"
+         },
+         "courseStartDate": {
+            "dbName": "course_start_date",
+            "type": "dateTime"
+         },
+         "courseEndDate": {
+            "dbName": "course_end_date",
+            "type": "dateTime"
+         }
+      }
+   },
+   "address": {
+      "tableName": "as_address",
+      "type": "object",
+      "primaryKey": [
+         "identifierAddres"
+      ],
+      "properties": {
+         "identifierAddres": {
+            "dbName": "identifier_address",
+            "type": "integer"
+         },
+         "permanentAddress": {
+            "dbName": "permanent_address",
+            "type": "string"
+         },
+         "typeAddress": {
+            "dbName": "type_address",
+            "type": "integer"
+         },
+         "identifierStudent": {
+            "dbName": "identifier_student",
+            "type": "integer"
+         },
+         "student": {
+            "dbName": "student",
+            "type": "object"
+         }
+      }
+   }
+}
